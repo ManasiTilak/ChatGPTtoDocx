@@ -15,7 +15,7 @@ def get_openai_response(client, model, question):
             {"role": "system", "content": "You are a helpful assistant and a coding expert. You are very good at writing coding blogs."},
             {"role": "user", "content": question}
         ],
-        max_tokens=10,
+        
     )
     return response.choices[0].message.content
 
@@ -40,7 +40,7 @@ def main():
     # Specify model
     model="gpt-3.5-turbo"
     # Specify Question
-    question="Capital of India?"
+    question="Write a comprehensive, complete outline for a blog post titled : The Future of Coding: Emerging Trends to Watch"
     # Specify Filename for output File
     filename="response.docx"
     try:
