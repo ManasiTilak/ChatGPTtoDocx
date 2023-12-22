@@ -7,7 +7,7 @@ QWidget {
 
 /* Style the buttons */
 QPushButton {
-    background-color: #2D89EF; /* A nice blue */
+    background-color: #2D89EF; 
     color: #FFFFFF; 
     border: none;
     padding: 5px 15px;
@@ -20,7 +20,6 @@ QPushButton:hover {
     background-color: #1E5DB0; /* A darker blue for hover state */
 }
 
-/* Style the line edits and spin boxes */
 QLineEdit, QSpinBox {
     border: 1px solid #DADADA;
     padding: 2px;
@@ -28,7 +27,7 @@ QLineEdit, QSpinBox {
     min-height: 20px;
 }
 
-/* Style the sliders */
+
 QSlider::groove:horizontal {
     border: 1px solid #BFBFBF;
     height: 8px;
@@ -55,7 +54,6 @@ QSlider::sub-page:horizontal {
     background: #2D89EF;
 }
 
-/* Style the checkboxes */
 QCheckBox {
     spacing: 5px;
 }
@@ -69,13 +67,11 @@ QCheckBox::indicator:unchecked {
     border: 1px solid #DADADA;
 }
 
-/* Style the scroll area */
 QScrollArea {
     border: none;
 }
 
-/* You can also style specific QLabel if needed, for example: */
-QTextEdit#outputLabel { /* Assuming you set the objectName to 'outputLabel' */
+QTextEdit#outputLabel 
     color: #333333;
     border: 1px solid #DADADA;
     background-color: #F7F7F7;

@@ -8,7 +8,6 @@ class AppWindow(QMainWindow):
     def __init__(self, submit_callback, save_callback):
         super().__init__()
         self.setWindowTitle("PyQt Interface - OpenAI Chat")
-        # self.setGeometry(100, 100, 600, 350)
         self.setGeometry(100, 100, 800, 600)
 
         # Store the submit_callback function
@@ -17,14 +16,14 @@ class AppWindow(QMainWindow):
         
         # Create layout
         layout = QVBoxLayout()
-        layout.setContentsMargins(10, 10, 10, 10)  # Add some margins around the layout
-        layout.setSpacing(10)  # Add spacing between widgets
+        layout.setContentsMargins(10, 10, 10, 10)  # Margins around the layout
+        layout.setSpacing(10)  # Spacing between widgets
 
         # Create widgets for input and submit
         # self.input_line = QLineEdit(self)
         self.input_text_edit = QTextEdit(self)
-        self.input_text_edit.setPlaceholderText("Enter your question here...")  # Placeholder text
-        self.input_text_edit.setMinimumHeight(40)  # Set a minimum height for 3-4 lines
+        self.input_text_edit.setPlaceholderText("Enter your question here...")
+        self.input_text_edit.setMinimumHeight(20)
 
         self.submit_button = QPushButton('Submit', self)
         self.submit_button.clicked.connect(self.on_submit_click)
@@ -87,15 +86,13 @@ class AppWindow(QMainWindow):
         layout.addWidget(self.input_text_edit)
         layout.addLayout(max_tokens_layout)
         layout.addLayout(temperature_layout)
-        # layout.addWidget(self.submit_button)
-        # layout.addWidget(self.scroll_area)
 
         # Create a horizontal layout for the buttons
         buttons_layout = QHBoxLayout()
         buttons_layout.addStretch()  # Add a stretchable space before the buttons (pushes them to center)
         buttons_layout.addWidget(self.submit_button)  # Add submit button
         buttons_layout.addWidget(self.save_button)  # Add save button
-        buttons_layout.addStretch()  # Add a stretchable space after the buttons (pushes them to center)
+        buttons_layout.addStretch()  # A stretchable space after the buttons (pushes them to center)
        
         # Add the buttons layout to the main layout
         layout.addLayout(buttons_layout)
@@ -105,7 +102,6 @@ class AppWindow(QMainWindow):
         container = QWidget()
         container.setLayout(layout)
         self.setCentralWidget(container)
-        # layout.addWidget(self.save_button)
 
     def on_submit_click(self):
         user_input = self.input_text_edit.toPlainText()

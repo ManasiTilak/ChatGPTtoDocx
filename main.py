@@ -12,7 +12,7 @@ class OpenAIChatApp:
     def __init__(self):
         load_dotenv()
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        self.model = "gpt-3.5-turbo"  # Adjust model as needed
+        self.model = "gpt-3.5-turbo"  # Model used
 
         self.app = QApplication(sys.argv)
         self.main_window = AppWindow(self.submit_query,  self.save_response_to_docx)
@@ -24,7 +24,7 @@ class OpenAIChatApp:
     def submit_query(self, query, max_tokens=None, temperature=None):
         # Set default values if None
         max_tokens = max_tokens or 100  # Default max_tokens
-        temperature = temperature or 0.7  # Default temperature
+        temperature = temperature or 0.1  # Default temperature
 
         try:
             response = self.client.chat.completions.create(
