@@ -1,5 +1,7 @@
-from PyQt5.QtWidgets import QMainWindow, QPushButton, QLineEdit, QVBoxLayout, QWidget, QLabel, QSpinBox, QSlider, QHBoxLayout, QCheckBox, QFileDialog, QScrollArea
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QLineEdit, QVBoxLayout, QWidget, QLabel, QSpinBox, QSlider, QHBoxLayout, QCheckBox, QFileDialog, QScrollArea, QTextEdit
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QTextOption
+
 
 
 class AppWindow(QMainWindow):
@@ -63,9 +65,11 @@ class AppWindow(QMainWindow):
         self.temperature_checkbox.setFixedHeight(25)
         self.max_tokens_checkbox.setFixedHeight(25)
 
-        # Output label
-        self.output_label = QLabel("Enter your question and press submit.", self)
-        self.output_label.setWordWrap(True)  # Enable word wrap
+        # Use a QTextEdit for the output area
+        self.output_text_edit = QTextEdit(self)
+        self.output_text_edit.setReadOnly(True)  # Make it read-only
+        self.output_text_edit.setText("Enter your question and press submit.")
+        self.output_text_edit.setWordWrapMode(QTextOption.WrapAtWordBoundaryOrAnywhere)  # Set word wrap
 
         # Scroll Area for output label
         self.scroll_area = QScrollArea(self)
@@ -73,7 +77,7 @@ class AppWindow(QMainWindow):
         self.scroll_area_widget_contents = QWidget()
         self.scroll_area.setWidget(self.scroll_area_widget_contents)
         layout_scroll_area = QVBoxLayout(self.scroll_area_widget_contents)
-        layout_scroll_area.addWidget(self.output_label)
+        layout_scroll_area.addWidget(self.output_text_edit)
         
         # Add widgets to layout
         layout.addWidget(self.input_line)

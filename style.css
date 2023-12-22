@@ -8,7 +8,7 @@ QWidget {
 /* Style the buttons */
 QPushButton {
     background-color: #2D89EF; /* A nice blue */
-    /* color: #FFFFFF; White text */
+    color: #FFFFFF; 
     border: none;
     padding: 5px 15px;
     border-radius: 2px;
@@ -68,10 +68,6 @@ QCheckBox::indicator {
 QCheckBox::indicator:unchecked {
     border: 1px solid #DADADA;
 }
-/* 
-QCheckBox::indicator:checked {
-    image: url('path_to_checked_image.png'); /* Use an image or set a background color */
-} */
 
 /* Style the scroll area */
 QScrollArea {
@@ -79,7 +75,7 @@ QScrollArea {
 }
 
 /* You can also style specific QLabel if needed, for example: */
-QLabel#outputLabel { /* Assuming you set the objectName to 'outputLabel' */
+QTextEdit#outputLabel { /* Assuming you set the objectName to 'outputLabel' */
     color: #333333;
     border: 1px solid #DADADA;
     background-color: #F7F7F7;

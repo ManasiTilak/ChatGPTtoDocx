@@ -37,11 +37,11 @@ class OpenAIChatApp:
         except Exception as e:
             answer = f"An error occurred: {e}"
 
-        self.main_window.output_label.setText(answer)
+        self.main_window.output_text_edit.setText(answer)
 
     def save_response_to_docx(self, file_path):
         doc = Document()
-        doc.add_paragraph(self.main_window.output_label.text())
+        doc.add_paragraph(self.main_window.output_text_edit.text())
         doc.save(file_path)
 
     def run(self):
