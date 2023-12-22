@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QPushButton, QLineEdit, QVBoxLayout, QWidget, QLabel, QSpinBox, QSlider, QHBoxLayout, QCheckBox, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QLineEdit, QVBoxLayout, QWidget, QLabel, QSpinBox, QSlider, QHBoxLayout, QCheckBox, QFileDialog, QScrollArea
 from PyQt5.QtCore import Qt
 
 
@@ -51,13 +51,25 @@ class AppWindow(QMainWindow):
 
         # Output label
         self.output_label = QLabel("Enter your question and press submit.", self)
+        self.output_label.setWordWrap(True)  # Enable word wrap
+
+        # Scroll Area for output label
+        self.scroll_area = QScrollArea(self)
+        self.scroll_area.setWidgetResizable(True)  # Make the scroll area resizable
+        self.scroll_area_widget_contents = QWidget()
+        self.scroll_area.setWidget(self.scroll_area_widget_contents)
+        layout_scroll_area = QVBoxLayout(self.scroll_area_widget_contents)
+        layout_scroll_area.addWidget(self.output_label)
+        self.scroll_area.setMinimumHeight(100)  # Set a minimum height for the scroll area
 
         # Add widgets to layout
         layout.addWidget(self.input_line)
         layout.addLayout(max_tokens_layout)
         layout.addLayout(temperature_layout)
         layout.addWidget(self.submit_button)
-        layout.addWidget(self.output_label)
+        # layout.addWidget(self.output_label)
+        layout.addWidget(self.scroll_area)
+
 
         # Set the layout
         container = QWidget()

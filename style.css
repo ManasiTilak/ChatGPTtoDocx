@@ -1,0 +1,76 @@
+/* General Widget Styling */
+QWidget {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* Button Styling */
+QPushButton {
+    background-color: #2e8b57;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    min-height: 24px;
+}
+
+QPushButton:hover {
+    background-color: #276747;
+}
+
+/* Input Field Styling */
+QLineEdit {
+    border: 1px solid #ccc;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+/* Spin Box Styling */
+QSpinBox {
+    padding: 2px;
+    min-width: 80px;
+}
+
+/* Slider Styling */
+QSlider {
+    min-height: 15px;
+}
+
+QSlider::groove:horizontal {
+    border: 1px solid #bbb;
+    background: white;
+    height: 8px;
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+    background: #2e8b57;
+    border: 1px solid #5c5c5c;
+    width: 18px;
+    margin: -5px 0;
+    border-radius: 3px;
+}
+
+/* Checkbox Styling */
+QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+}
+
+QCheckBox::indicator:unchecked {
+    border: 1px solid #767676;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #2e8b57;
+    border: 1px solid #767676;
+}
+
+/* Label Styling */
+QLabel {
+    color: #555;
+}

@@ -18,6 +18,9 @@ class OpenAIChatApp:
         self.main_window = AppWindow(self.submit_query,  self.save_response_to_docx)
         self.main_window.show()
 
+        with open("style.css", "r") as f:
+            self.app.setStyleSheet(f.read())
+
     def submit_query(self, query, max_tokens=None, temperature=None):
         # Set default values if None
         max_tokens = max_tokens or 100  # Default max_tokens
