@@ -1,16 +1,21 @@
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QLineEdit, QVBoxLayout, QWidget, QLabel, QSpinBox, QSlider, QHBoxLayout, QCheckBox, QFileDialog, QScrollArea, QTextEdit
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QTextOption
+from PyQt5.QtGui import QTextOption, QIcon
 
 class AppWindow(QMainWindow):
     def __init__(self, submit_callback, save_callback):
         super().__init__()
         self.setWindowTitle("PyQt Interface - OpenAI Chat")
         self.setGeometry(100, 100, 800, 600)
+        self.setWindowIcon(QIcon('icon.png'))
 
         # Store the submit_callback function
         self.submit_callback = submit_callback
         self.save_callback = save_callback
+
+        # Initialize Status Bar
+        self.status_bar = self.statusBar()
+        self.status_bar.showMessage("Ready")
         
         # Create layout
         layout = QVBoxLayout()
@@ -36,7 +41,7 @@ class AppWindow(QMainWindow):
         self.max_tokens_spin = QSpinBox(self)
         self.max_tokens_spin.setMinimum(1)
         self.max_tokens_spin.setMaximum(9999)
-        self.max_tokens_spin.setValue(100)
+        self.max_tokens_spin.setValue(800)
         self.max_tokens_spin.setEnabled(False)  # Disabled by default
         max_tokens_layout = QHBoxLayout()
         max_tokens_layout.addWidget(self.max_tokens_checkbox)
@@ -106,6 +111,7 @@ class AppWindow(QMainWindow):
         max_tokens = self.max_tokens_spin.value() if self.max_tokens_checkbox.isChecked() else None
         temperature = self.temperature_slider.value() / 100.0 if self.temperature_checkbox.isChecked() else None
         self.submit_callback(user_input, max_tokens, temperature)
+        self.status_bar.showMessage("Fetching response...") # to show status
 
     def max_tokens_checkbox_changed(self, state):
         self.max_tokens_spin.setEnabled(state == Qt.Checked)
