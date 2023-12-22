@@ -1,57 +1,61 @@
-/* General Widget Styling */
+/* Set the overall font and background of the window */
 QWidget {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 10pt;
+    background-color: #FFFFFF; /* White background */
 }
 
-/* Button Styling */
+/* Style the buttons */
 QPushButton {
-    background-color: #2e8b57;
-    color: white;
+    background-color: #2D89EF; /* A nice blue */
+    /* color: #FFFFFF; White text */
     border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
+    padding: 5px 15px;
+    border-radius: 2px;
     min-height: 24px;
+    min-width: 75px;
 }
 
 QPushButton:hover {
-    background-color: #276747;
+    background-color: #1E5DB0; /* A darker blue for hover state */
 }
 
-/* Input Field Styling */
-QLineEdit {
-    border: 1px solid #ccc;
-    padding: 4px;
-    border-radius: 4px;
-}
-
-/* Spin Box Styling */
-QSpinBox {
+/* Style the line edits and spin boxes */
+QLineEdit, QSpinBox {
+    border: 1px solid #DADADA;
     padding: 2px;
-    min-width: 80px;
+    border-radius: 2px;
+    min-height: 20px;
 }
 
-/* Slider Styling */
-QSlider {
-    min-height: 15px;
-}
-
+/* Style the sliders */
 QSlider::groove:horizontal {
-    border: 1px solid #bbb;
-    background: white;
+    border: 1px solid #BFBFBF;
     height: 8px;
+    background: #F0F0F0;
+    margin: 2px 0;
     border-radius: 4px;
 }
 
 QSlider::handle:horizontal {
-    background: #2e8b57;
-    border: 1px solid #5c5c5c;
-    width: 18px;
-    margin: -5px 0;
-    border-radius: 3px;
+    background: #2D89EF;
+    border: 1px solid #BFBFBF;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    margin: -4px 0;
+    border-radius: 7px;
 }
 
-/* Checkbox Styling */
+QSlider::add-page:horizontal {
+    background: #BFBFBF;
+}
+
+QSlider::sub-page:horizontal {
+    background: #2D89EF;
+}
+
+/* Style the checkboxes */
 QCheckBox {
     spacing: 5px;
 }
@@ -62,15 +66,23 @@ QCheckBox::indicator {
 }
 
 QCheckBox::indicator:unchecked {
-    border: 1px solid #767676;
+    border: 1px solid #DADADA;
 }
-
+/* 
 QCheckBox::indicator:checked {
-    background-color: #2e8b57;
-    border: 1px solid #767676;
+    image: url('path_to_checked_image.png'); /* Use an image or set a background color */
+} */
+
+/* Style the scroll area */
+QScrollArea {
+    border: none;
 }
 
-/* Label Styling */
-QLabel {
-    color: #555;
+/* You can also style specific QLabel if needed, for example: */
+QLabel#outputLabel { /* Assuming you set the objectName to 'outputLabel' */
+    color: #333333;
+    border: 1px solid #DADADA;
+    background-color: #F7F7F7;
+    padding: 4px;
+    border-radius: 2px;
 }
