@@ -71,7 +71,7 @@ QScrollArea {
     border: none;
 }
 
-QTextEdit#outputLabel 
+QTextEdit#outputLabel {
     color: #333333;
     border: 1px solid #DADADA;
     background-color: #F7F7F7;
