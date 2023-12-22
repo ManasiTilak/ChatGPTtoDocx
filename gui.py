@@ -21,7 +21,11 @@ class AppWindow(QMainWindow):
         layout.setSpacing(10)  # Add spacing between widgets
 
         # Create widgets for input and submit
-        self.input_line = QLineEdit(self)
+        # self.input_line = QLineEdit(self)
+        self.input_text_edit = QTextEdit(self)
+        self.input_text_edit.setPlaceholderText("Enter your question here...")  # Placeholder text
+        self.input_text_edit.setMinimumHeight(40)  # Set a minimum height for 3-4 lines
+
         self.submit_button = QPushButton('Submit', self)
         self.submit_button.clicked.connect(self.on_submit_click)
 
@@ -80,7 +84,7 @@ class AppWindow(QMainWindow):
         layout_scroll_area.addWidget(self.output_text_edit)
         
         # Add widgets to layout
-        layout.addWidget(self.input_line)
+        layout.addWidget(self.input_text_edit)
         layout.addLayout(max_tokens_layout)
         layout.addLayout(temperature_layout)
         # layout.addWidget(self.submit_button)
@@ -104,7 +108,7 @@ class AppWindow(QMainWindow):
         # layout.addWidget(self.save_button)
 
     def on_submit_click(self):
-        user_input = self.input_line.text()
+        user_input = self.input_text_edit.toPlainText()
         max_tokens = self.max_tokens_spin.value() if self.max_tokens_checkbox.isChecked() else None
         temperature = self.temperature_slider.value() / 100.0 if self.temperature_checkbox.isChecked() else None
         self.submit_callback(user_input, max_tokens, temperature)

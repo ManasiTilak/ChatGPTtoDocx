@@ -41,7 +41,7 @@ class OpenAIChatApp:
 
     def save_response_to_docx(self, file_path):
         doc = Document()
-        doc.add_paragraph(self.main_window.output_text_edit.text())
+        doc.add_paragraph(self.main_window.output_text_edit.toPlainText())
         doc.save(file_path)
 
     def run(self):
