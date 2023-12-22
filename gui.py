@@ -2,8 +2,6 @@ from PyQt5.QtWidgets import QMainWindow, QPushButton, QLineEdit, QVBoxLayout, QW
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QTextOption
 
-
-
 class AppWindow(QMainWindow):
     def __init__(self, submit_callback, save_callback):
         super().__init__()
