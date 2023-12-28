@@ -12,23 +12,26 @@ class Worker(QObject):
     finished = pyqtSignal(str)  # Signal to indicate completion
     error = pyqtSignal(Exception)  # Signal for errors
 
-    def __init__(self, client, model, query, max_tokens, temperature):
+    def __init__(self, client, model, conversation_history, query, max_tokens, temperature):
         super().__init__()
         self.client = client
         self.model = model
         self.query = query
         self.max_tokens = max_tokens or 800
         self.temperature = temperature or 0.1
+        self.conversation_history = conversation_history
+    
 
     def run(self):
         try:
             response = self.client.chat.completions.create(
                 model=self.model,
-                messages=[{"role": "user", "content": self.query}],
+                messages=self.conversation_history,
                 max_tokens=self.max_tokens,
                 temperature=self.temperature
             )
             answer = response.choices[0].message.content
+            self.conversation_history.append({"role": "assistant", "content": answer})            
             self.finished.emit(answer)  # Emit the result
         except Exception as e:
             self.error.emit(e)  # Emit the error
@@ -37,6 +40,9 @@ class Worker(QObject):
 class OpenAIChatApp:
     def __init__(self):
         load_dotenv()
+        #intialize empty list to store each interaction (both the user's messages and the AI's responses)
+        self.conversation_history = []
+
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.model = "gpt-3.5-turbo"  # Model used
 
@@ -48,13 +54,17 @@ class OpenAIChatApp:
             self.app.setStyleSheet(f.read())
 
     def submit_query(self, query, max_tokens=None, temperature=None):
+        
+        # Add user query to conversation history
+        self.conversation_history.append({"role": "user", "content": query})
+
         # Set default values if None
         max_tokens = max_tokens or 800
         temperature = temperature or 0.1
 
         # Create a QThread object
         self.thread = QThread()
-        self.worker = Worker(self.client, self.model, query, max_tokens, temperature)
+        self.worker = Worker(self.client, self.model, self.conversation_history, query, max_tokens, temperature)
 
         # Move worker to the thread
         self.worker.moveToThread(self.thread)
